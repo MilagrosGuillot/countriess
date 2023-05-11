@@ -1,0 +1,4 @@
+export const GET_PAISES = "GET PAISES"
+export const GET_DETAIL_PAISES = "GET_DETAIL_PAISES"
+
+

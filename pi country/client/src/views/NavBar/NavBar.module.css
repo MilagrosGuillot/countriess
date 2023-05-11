@@ -1,0 +1,16 @@
+.container{
+    background-color: cornflowerblue;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.link{
+color: black;
+justify-content: space-around;
+width: 50px;
+}
+
+.link2{
+justify-content: space-around;
+
+}

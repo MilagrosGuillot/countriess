@@ -1,0 +1,26 @@
+.conteinerDiv {
+    background-image: url("./assins/mapa.jpg");
+    background-size: cover;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.h2 {
+    font-size: 2.6rem;
+    color: black;
+}
+
+.h2:hover {
+    color: gray;
+}
+
+.containerh1 {
+    color: white;
+}
+
+.Link {
+    text-decoration: none;
+}
