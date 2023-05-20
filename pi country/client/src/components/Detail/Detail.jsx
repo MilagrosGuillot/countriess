@@ -20,12 +20,12 @@ return (
     {detailPais.nombre ? (
         <div className={styles.infoContainer}>
         <h2>{detailPais?.id}</h2>
-        <p>{detailPais?.nombre}</p>
-        <p>{detailPais?.continente}</p>
-        <p>{detailPais?.capital}</p>
-        <p>{detailPais?.subregion}</p>
-        <p>{detailPais?.area}</p>
-        <p>{detailPais?.poblacion}</p>
+        <p>Nombre: {detailPais?.nombre}</p>
+        <p>Continente: {detailPais?.continente}</p>
+        <p>Capital: {detailPais?.capital}</p>
+        <p>Subregion: {detailPais?.subregion}</p>
+        <p>Area: {detailPais?.area}</p>
+        <p> Poblacion: {detailPais?.poblacion}</p>
         <img src={detailPais?.bandera} alt="img" className={styles.img} />
         </div>
     ) : (

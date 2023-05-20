@@ -18,7 +18,7 @@ return(
     key={pais.id}
     id={pais.id}
     nombre={pais.nombre}
-    bandera={pais.bandeara}
+    bandera={pais.bandera}
     capital={pais.capital}
     poblacion={pais.poblacion}
     subregion={pais.poblacion}

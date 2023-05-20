@@ -3,21 +3,6 @@ const {Country, Activity} = require("../db")
 const { Op } = require('sequelize');
 
 
-const cleanRecipes = (rec) => {
-    return rec.map((el) => {
-        return {
-            id: el.cioc,
-            name: el.name.common,
-            Bandera: el.flags[1],
-            continente: el.continents,
-            capital: el.capital,
-            area: el.area,
-            subregion: el.subregion,
-            poblacion: el.population,
-        }
-    });
-};
-
 const getCountries = async () => {
     let dbCountries = await Country.findAll({
         include: [Activity]
@@ -31,13 +16,16 @@ const getCountries = async () => {
                     id: country.cca3,
                     name: country.name.common,
                     flags: country.flags[1],
-                    continents: country.continents[0],
+                    continents: country.region,
                     capital: country.capital ? country.capital[0] : 'Undefined capital city',
                     subregion: country.subregion ? country.subregion : 'Undefinded Subregion',
                     area: country.area,
                     population: country.population
                 };
-            })
+                
+            },
+            
+)
         
             countries.forEach((country) => {
                 Country.findOrCreate({
