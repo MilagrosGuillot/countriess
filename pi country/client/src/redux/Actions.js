@@ -32,6 +32,14 @@ export const postActivity = (state) => {
         return url
     }
 }
+export const getactivity = () => {
+    return async function(dispatch){
+      const json = await axios.get('http://localhost:3001/activities')
+      return dispatch({
+        type: GET_ACTIVITIES,
+        payload:json.data
+      })
+    }}
 
 export const filterbyContinent = (payload) => {
     console.log(payload)
@@ -48,14 +56,20 @@ export const filterActivity = (payload) => {
     }
 }
 
-export const getactivity = () => {
-        return async function(dispatch){
-          const json = await axios.get('http://localhost:3001/activities')
-          return dispatch({
-            type: GET_ACTIVITIES,
-            payload:json.data
-          })
-        }}
+export const filterPopulation = (payload) => {
+    console.log(payload)
+    return {
+        type: "FILTER_POPULATION" , payload
+    }
+}
+export const filterAbc = (payload) => {
+    console.log(payload)
+    return {
+        type: "FILTER_ABC" , payload
+    }
+}
+
+
 
 
 

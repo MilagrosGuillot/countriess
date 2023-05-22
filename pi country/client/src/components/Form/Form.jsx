@@ -35,7 +35,6 @@ const handlerChange = (event) =>{
     }
 
 function handlerSubmit(event) {
-    console.log("ENTRO")
     event.preventDefault()
     dispatch(postActivity(state))
     alert('Actividad creada exitosamente')
@@ -56,6 +55,12 @@ const handleSelect= (e) => {
     country:[...state.country,e.target.value]
     }))
   }
+  const handleDelete = (elem) => {
+setState({
+    ...state ,
+    country: state.country.filter(el=> el !== elem)
+  })
+  }
 
 return(
     <div >
@@ -69,19 +74,6 @@ return(
             <p>{error.nombre}</p>
         <hr></hr>
 
-        <label>Seleccionar pais/es</label>
-        <select onChange={(e) => handleSelect(e)} >
-            <option name="country" >Elegir pais</option>
-            {
-            pais?.map((p)=> <option
-                key={p.id}>
-                {p.nombre}</option>)
-            }
-        </select>
-        <ul><li>{state.country.map((elem) => elem + " ,")}</li></ul>
-        <p>{error.country}</p>
-
-        <hr></hr>
 
     <label>Duracion: </label>
     <input type={"number"} value={state.duracion} name="duracion" placeholder='en horas..' onChange={handlerChange}></input>
@@ -110,10 +102,29 @@ return(
             <option value={'Primavera'}>Primavera</option>
         </select>
         <p>{error.temporada}</p>
-        <button type="submit"  >Enviar</button>
-        </form>
+
+ <label>Seleccionar pais/es</label>
+        <select onChange={(e) => handleSelect(e)} >
+            <option name="country" >Elegir pais</option>
+            {
+            pais?.map((p)=> <option
+                key={p.id}>
+                {p.nombre}</option>)
+            }
+        </select>
+        <p>{error.country}</p>
+
+        <button type="submit" >Enviar</button>
+        </form> 
         
-    
+        <ul><li>{state.country.map((elem) => (
+            <div>
+            <p>{elem}</p>
+            <button onClick={()=> handleDelete(elem)}>x</button>
+            </div>
+            ))}
+            </li>
+            </ul>
     </div>
 )}
 

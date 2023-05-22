@@ -1,7 +1,7 @@
 import styles from "./Card.module.css"
 import {NavLink} from "react-router-dom"
 
-const Card = ({id, nombre, bandera, capital, poblacion, subregion, area, continente}) => {
+const Card = ({id, nombre, bandera, capital, poblacion, subregion, area, continente, activity}) => {
     return(
         <div className={styles.divCard}>
             <NavLink to={`/detail/${id}`}>
