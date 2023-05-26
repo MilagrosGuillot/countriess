@@ -1,41 +1,39 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getdetailPaises } from "../../redux/Actions";
+import { getdetailCountry } from "../../redux/Actions";
 import { useParams } from "react-router-dom";
 import styles from "./Detail.module.css";
-import ActivityCard from "../../views/ActivityCard"
-
+import ActivityCard from "../../views/Activity/ActivityCard"
 
 const Detail = () => {
-  const detailPais = useSelector((state) => state.detailPaises);
+  const detailCountry = useSelector((state) => state.detailCountry);
   const dispatch = useDispatch();
   const { id } = useParams();
 
   useEffect(() => {
-    dispatch(getdetailPaises(id));
+    dispatch(getdetailCountry(id));
 }, [dispatch, id]);
 
 return (
     <div className={styles.container}>
-    {detailPais.nombre ? (
+    {detailCountry.nombre ? (
         <div className={styles.infoContainer}>
-        <h2>{detailPais?.id}</h2>
-        <p>Nombre: {detailPais?.nombre}</p>
-        <p>Continente: {detailPais?.continente}</p>
-        <p>Capital: {detailPais?.capital}</p>
-        <p>Subregion: {detailPais?.subregion}</p>
-        <p>Area: {detailPais?.area}</p>
-        <p> Poblacion: {detailPais?.poblacion}</p>
-        <img src={detailPais?.bandera} alt="img" className={styles.img} />
+        <h2>{detailCountry?.id}</h2>
+        <p>Nombre: {detailCountry?.nombre}</p>
+        <p>Continente: {detailCountry?.continente}</p>
+        <p>Capital: {detailCountry?.capital}</p>
+        <p>Subregion: {detailCountry?.subregion}</p>
+        <p>Area: {detailCountry?.area}</p>
+        <p> Poblacion: {detailCountry?.poblacion}</p>
+        <img src={detailCountry?.bandera} alt="img" className={styles.img} />
         </div>
     ) : (
-        <h3>Loading...</h3>
+        <h3>Cargando...</h3>
     )
-
     }
-
-        <h2>Actividades: </h2>
-    {detailPais.activities && detailPais.activities.length > 0 ? detailPais.activities.map(a =>
+    <div className={styles.ActivityCard}>
+        <h2 >Actividades: </h2>
+    {detailCountry.activities  && detailCountry.activities.length > 0 ? detailCountry.activities.map(a =>
     <ActivityCard
     nombre={a.nombre}
     temporada={a.temporada}
@@ -45,7 +43,7 @@ return (
     /> )
     : <p>No hay actividades registradas</p>
     }
-    
+    </div>
     </div>
 );
 };

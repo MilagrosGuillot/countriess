@@ -10,23 +10,18 @@ const getCountries = async () => {
     try {
         if(dbCountries.length === 0) {
             const { data } = await axios.get('https://restcountries.com/v3/all');
-            
             const countries = data.map((country) => {
                 return {
                     id: country.cca3,
                     name: country.name.common,
                     flags: country.flags[1],
                     continents: country.region,
-                    capital: country.capital ? country.capital[0] : 'Undefined capital city',
-                    subregion: country.subregion ? country.subregion : 'Undefinded Subregion',
+                    capital: country.capital ? country.capital[0] : 'Capital indefinida',
+                    subregion: country.subregion ? country.subregion : 'Subregion indefinida',
                     area: country.area,
                     population: country.population
                 };
-                
-            },
-            
-)
-        
+            })
             countries.forEach((country) => {
                 Country.findOrCreate({
                     where: { id: country.id },
@@ -56,14 +51,6 @@ const getCountries = async () => {
         console.log('Error getCountries en controller ' + error)
     }
 }
-/*const getAllCountries = async () => {
-const country = "https://restcountries.com/v3/all"
-return axios(country).then(response => {
-    const apiRecipeRaw = response.data
-    const apiRecipes = cleanRecipes(apiRecipeRaw);
-    return apiRecipes
-})}
-*/
 
 const getCountry = async (id) => {
 const countries = await Country.findByPk( id, { include: {

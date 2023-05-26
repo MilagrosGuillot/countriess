@@ -1,13 +1,12 @@
 import { useState, useEffect } from "react"
 import Validate from "./validatee";
 import { useDispatch, useSelector } from "react-redux";
-import {getPaises} from "../../redux/Actions"
+import {getCountries} from "../../redux/Actions"
 import { postActivity } from "../../redux/Actions";
 import styles from "./Form.module.css"
 
-
 const Form = () => {
-const  [error, setErrors] = useState({
+const  [errors, setErrors] = useState({
     nombre: "",
     dificultad:"",
     duracion:"",
@@ -23,22 +22,21 @@ const [state, setState] = useState({
     country: []
 })
 const dispatch = useDispatch()
-const pais = useSelector(state => state.paises)
+const countries = useSelector(state => state.countries)
 
 useEffect(()=>{
-    dispatch((getPaises()))
+    dispatch((getCountries()))
   },[dispatch])
 
-const handlerChange = (event) =>{
+const handleChange = (event) =>{
         setState({...state,[event.target.name]:event.target.value})
         setErrors(Validate({...state,[event.target.name]:event.target.value}))
     }
 
-function handlerSubmit(event) {
+function handleSubmit(event) {
     event.preventDefault()
     dispatch(postActivity(state))
     alert('Actividad creada exitosamente')
-    console.log(state)
     setState({
         nombre: "",
         dificultad:"",
@@ -47,12 +45,12 @@ function handlerSubmit(event) {
         country: []
     })}
 
-const handleSelect= (e) => {
+const handleSelect= (event) => {
     setState({...state,
-    country:[...state.country,e.target.value]
+    country:[...state.country,event.target.value]
     })
     setErrors(Validate({...state,
-    country:[...state.country,e.target.value]
+    country:[...state.country,event.target.value]
     }))
   }
   const handleDelete = (elem) => {
@@ -61,73 +59,76 @@ setState({
     country: state.country.filter(el=> el !== elem)
   })
   }
-
+  const disable = () => {
+    for (let error in errors) {
+      if (errors[error] !== "") {
+        return true; // Si hay al menos un error, deshabilitar el botón
+      }
+    }
+    return false; // Si no hay errores, habilitar el botón
+  };
+  
 return(
-    <div >
-        <form onSubmit={(event) =>handlerSubmit(event)} className={styles.container}>
-            {console.log(error)}
+    <div className={styles.container} >
+        <form onSubmit={(event) =>handleSubmit(event)} className={styles.form} >
+            {console.log(errors)}
             {console.log(state)}
             <h1>Crear Actividad </h1>
 
             <label>Nombre: </label>
-            <input type="text" name="nombre" onChange={handlerChange} value={state.nombre}></input>
-            <p>{error.nombre}</p>
+            <input type="text" name="nombre" onChange={(event)=>handleChange(event)} value={state.nombre}></input>
+            <p>{errors.nombre}</p>
         <hr></hr>
 
-
-    <label>Duracion: </label>
-    <input type={"number"} value={state.duracion} name="duracion" placeholder='en horas..' onChange={handlerChange}></input>
-    <p>{error.duracion}</p>
+    <label >Duracion: </label>
+    <input type={"number"} value={state.duracion}  name="duracion" placeholder='en horas..' onChange={(event)=>handleChange(event)}></input>
+    <p>{errors.duracion}</p>
     <hr></hr>
 
-
     <label>Dificultad</label>
-        <select  name='dificultad' onChange={handlerChange}> value={state.dificultad}
-        <option>dificultad</option>
+        <select  name='dificultad' onChange={(event)=>handleChange(event)} className={styles.select} value={state.dificultad}> 
+        <option className={styles.option} disabled> dificultad</option>
             <option value={'1'}>1</option>
             <option value={'2'}>2</option>
             <option value={'3'}>3</option>
             <option value={'4'}>4</option>
             <option value={'5'}>5</option>
         </select>
-        <p>{error.dificultad}</p>
+        <p>{errors.dificultad}</p>
         <hr></hr>
 
-        <label>Temporada</label>
-        <select name='temporada'onChange={handlerChange}>
-        <option>temporada</option>
+        <label >Temporada</label>
+        <select name='temporada'onChange={(event)=>handleChange(event)} className={styles.select}>
+        <option className={styles.option} disabled>temporada</option>
             <option value={'Verano'}>Verano</option>
             <option value={'Otoño'}>Otoño</option>
             <option value={'Invierno'}>Invierno</option>
             <option value={'Primavera'}>Primavera</option>
         </select>
-        <p>{error.temporada}</p>
+        <p>{errors.temporada}</p>
 
  <label>Seleccionar pais/es</label>
-        <select onChange={(e) => handleSelect(e)} >
-            <option name="country" >Elegir pais</option>
+        <select onChange={(event) => handleSelect(event)} className={styles.select}>
+            <option name="country" className={styles.option} >Elegir pais</option>
             {
-            pais?.map((p)=> <option
+            countries?.map((p)=> <option
                 key={p.id}>
                 {p.nombre}</option>)
             }
         </select>
-        <p>{error.country}</p>
+        <p>{errors.country}</p>
 
-        <button type="submit" >Enviar</button>
+        <button type="submit" disabled={disable()} className={styles.botonUno}>Enviar</button>
         </form> 
-        
-        <ul><li>{state.country.map((elem) => (
-            <div>
+        <ul className={styles.ul}><li>{state.country.map((elem) => (
+            <div key={elem} className={styles.diContainerDos}>
             <p>{elem}</p>
-            <button onClick={()=> handleDelete(elem)}>x</button>
+            <button onClick={()=> handleDelete(elem)} className={styles.boton}>x</button>
             </div>
             ))}
             </li>
             </ul>
     </div>
 )}
-
-
 
 export default Form

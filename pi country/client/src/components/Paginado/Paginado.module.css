@@ -5,7 +5,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0;
+    padding: 20px;
   }
   
   .paginado li {
@@ -19,10 +19,12 @@
     font-size: 14px;
     cursor: pointer;
     transition: background-color 0.3s;
+    border-radius: 20px;
+    padding: 10px 16px
   }
   
   .paginado button:hover {
-    background-color: #e0e0e0;
+    background-color:crimson ;
   }
   
   .paginado button:focus {

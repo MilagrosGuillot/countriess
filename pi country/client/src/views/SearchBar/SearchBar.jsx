@@ -1,32 +1,37 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { getPaisesNamee } from "../../redux/Actions";
+import { getCountryName } from "../../redux/Actions";
+import styles from "./SearchBar.module.css"
 import { Link } from "react-router-dom";
 
-
-const SearchBar = () => {
+const SearchBar = ({setPageNum}) => {
 const [name, setName] = useState("");
 const dispatch = useDispatch();
 
 const handleChange = (event) => {
     setName(event.target.value);
-    console.log(name)
+    console.log(event.target.value)
 };
 
 const handleClick = (event) => {
-    event.preventDefault();
-    dispatch(getPaisesNamee(name));
-};
+ 
+    //dispatch(getCountryName(name));
+    setName("")
+  };
 
 return (
-    <div>
+    <form className={styles.container}>
         <input
+        className={styles.input}
         type="text"
+        value={name}
         placeholder="Buscar países..."
-        onChange={handleChange}
+        onChange={(event) => handleChange (event)}
         />
-    <button type="submit" onSubmit={(e) => handleClick(e)}>Buscar</button>
-    </div>
+   <Link to={`/search/${name}`}>
+     <button onClick={(event) => handleClick(event)}>Buscar</button>
+     </Link>
+    </form>
     
 );
 };

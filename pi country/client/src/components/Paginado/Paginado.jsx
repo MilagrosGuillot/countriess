@@ -2,10 +2,10 @@ import styles from "./Paginado.module.css"
 import React from 'react'
 
 
-const Paginado = ({paises, charactersPerPage,paginado }) => {
+const Paginado = ({countries, countryPerPage,paginado }) => {
   const pageNumbers = []
 
-  for(let i=1; i<= Math.ceil(paises /charactersPerPage);i++){ 
+  for(let i=1; i<= Math.ceil(countries /countryPerPage);i++){ 
     pageNumbers.push(i)
   }
 

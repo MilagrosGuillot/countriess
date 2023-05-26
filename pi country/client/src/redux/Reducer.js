@@ -1,39 +1,37 @@
 import { GET_PAISES, GET_DETAIL_PAISES,FILTER_POPULATION,FILTER_ABC, GET_PAISES_NAME, POST_ACTIVITY, FILTER_BY_CONTINENT, FILTER_BY_ACTIVITY, GET_ACTIVITIES } from "./typesActions"
-
 const initialState = {
-   paises: [],
-   allpaises: [],
-   detailPaises: {},
-   getPaisesNamee:[],
+  countries: [],
+   allCountries: [],
+   detailCountry: {},
    activities: [],
-   activity : []
+   activity : [],
+   getcountriesname:[]
 }
-
 
 const rootReducer = (state = initialState, action) => {
     switch (action.type) {
     case GET_PAISES:
-    return {...state, paises: action.payload, allpaises:action.payload}
+    return {...state, countries: action.payload, allCountries:action.payload}
     
     case GET_DETAIL_PAISES:
-        return {...state, detailPaises: action.payload }
+        return {...state, detailCountry: action.payload }
     
         case GET_PAISES_NAME:
-        return {...state, getPaisesNamee: action.payload}
+        return {...state, getcountriesname: action.payload  }
         
         case POST_ACTIVITY:
             return {...state}
 
         case FILTER_BY_CONTINENT:
-        const allpaises = state.allpaises
-        const filterContinente = action.payload === "All" ? allpaises : allpaises.filter(el => el.continente ===action.payload)
+        const allCountries = state.allCountries
+        const filterContinente = action.payload === "All" ? allCountries : allCountries.filter(el => el.continente ===action.payload)
         return{
-            ...state, paises: filterContinente
+            ...state, countries: filterContinente
             }
 
             case FILTER_BY_ACTIVITY:
                 let filter=[]
-                state.allpaises.map((country)=>(
+                state.allCountries.map((country)=>(
                 country.activities.map((activity)=> {
                     if(activity.nombre ===action.payload){
                     return filter.push(country)
@@ -42,7 +40,7 @@ const rootReducer = (state = initialState, action) => {
                 ))
                 return{
                 ...state,
-                paises: filter
+                countries: filter
                 }
             
         case GET_ACTIVITIES:
@@ -51,7 +49,7 @@ const rootReducer = (state = initialState, action) => {
                 activities: action.payload , activity:action.payload
             }
             case FILTER_POPULATION:
-                    const sortedPaises = [...state.allpaises];
+                    const sortedPaises = [...state.allCountries];
                     sortedPaises.sort((a, b) => {
                     if (action.payload === 'Desc') {
                         return a.poblacion - b.poblacion;
@@ -61,12 +59,10 @@ const rootReducer = (state = initialState, action) => {
                         return 0;
                     }
                     });
-                    return { ...state, paises: sortedPaises };
-
+                    return { ...state, countries: sortedPaises };
 
                     case FILTER_ABC:
-            
-                            const sortedCountries = [...state.allpaises];
+                            const sortedCountries = [...state.allCountries];
                             sortedCountries.sort((a, b) => {
                               if (action.payload === 'Asc') {
                                 if (a.nombre > b.nombre) {
@@ -85,12 +81,9 @@ const rootReducer = (state = initialState, action) => {
                               }
                               return 0;
                             });
-                            return { ...state, paises: sortedCountries };
-                          
-
-
-
-
+                            return { ...state, countries
+                              : sortedCountries };
+                      
         default:
             return { ...state }
             

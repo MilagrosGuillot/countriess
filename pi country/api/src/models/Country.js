@@ -35,6 +35,6 @@ module.exports = (sequelize) => {
     area: {
       type: DataTypes.FLOAT,
     },
-   
+  
   });
 }

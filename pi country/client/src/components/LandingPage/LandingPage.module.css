@@ -1,24 +1,53 @@
-.conteinerDiv {
-    background-image: url("./assins/mapa.jpg");
-    background-size: cover;
-    min-height: 100vh;
+.containerDiv {
+    flex: 3;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    padding: 20px;
+    background-color:cadetblue;
+  }
+  .containerWrapper {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
+    width: 100%;
+    min-height: 100vh;
+  }
 
-.h2 {
+  .containerImg {
+    flex: 7;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    
+  }
+  .linkAnimationPerpendicular {
+    transition: transform 0.5s ease;
+  }
+  
+  .linkAnimationPerpendicular:hover {
+    transform: translateY(-50px) translateZ(15px) translateX(40px);
+  }
+  .img {
+  width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+.button{
+    text-decoration: none;
     font-size: 2.6rem;
     color: black;
+    border-radius: 10px;
+    width: 40%;
+}
+.button:hover {
+    color:darkslategray;
 }
 
-.h2:hover {
-    color: gray;
-}
-
-.containerh1 {
+h1 {
+    font-family: 'Roboto', 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     color: white;
+    font-size: 3rem ;
 }
 
 .Link {
