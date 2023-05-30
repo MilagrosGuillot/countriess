@@ -15,6 +15,11 @@ export const getdetailCountry = (id) => {
         dispatch({ type: GET_DETAIL_PAISES, payload: data })
     }
 }
+export const updateSearchResults = (results) => ({
+    type: 'UPDATE_SEARCH_RESULTS',
+    payload: results,
+  });
+  
 export const getCountryName = (name) => {
     return async function (dispatch) {
         console.log("entro")

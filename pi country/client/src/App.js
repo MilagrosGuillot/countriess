@@ -1,8 +1,8 @@
 import './App.css';
 import {Routes, Route, useLocation} from "react-router-dom"
-import { HomePage, LandingPage, Detail, Form } from './components';
-import NavBar from './views/NavBar/NavBar';
-import SearchBarName from './views/SearchBar/SearchBarName';
+import { HomePage, LandingPage, Detail, Form } from './views';
+import NavBar from './components/NavBar/NavBar';
+import SearchBarName from './components/SearchBar/SearchBarName';
 
 
 
