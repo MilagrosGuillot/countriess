@@ -23,7 +23,7 @@ export const updateSearchResults = (results) => ({
 export const getCountryName = (name) => {
     return async function (dispatch) {
         console.log("entro")
-        const url = await axios.get(`http://localhost:3001/countries?name=${name}`)
+        const url = await axios.get('http://localhost:3001/countries?name=' + name)
         const data = url.data
         dispatch({ type: GET_PAISES_NAME, payload: data })
     }
@@ -44,17 +44,18 @@ export const getactivity = () => {
     })
     }}
 
+export const filterActivity = (payload) => {
+    console.log(payload)
+    return {
+        type: "FILTER_BY_ACTIVITY" , payload
+    }
+}
+
 export const filterbyContinent = (payload) => {
     console.log(payload)
     return {
         type: "FILTER_BY_CONTINENT" , payload
         
-    }
-}
-export const filterActivity = (payload) => {
-    console.log(payload)
-    return {
-        type: "FILTER_BY_ACTIVITY" , payload
     }
 }
 export const filterPopulation = (payload) => {

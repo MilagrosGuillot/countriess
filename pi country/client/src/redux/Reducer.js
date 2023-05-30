@@ -12,48 +12,38 @@ const initialState = {
 const rootReducer = (state = initialState, action) => {
     switch (action.type) {
     case GET_PAISES:
-    return {...state, countries: action.payload, allCountries:action.payload}
+    return {...state, countries: action.payload, allCountries :action.payload}
     
     case GET_DETAIL_PAISES:
         return {...state, detailCountry: action.payload }
     
         case GET_PAISES_NAME:
-        return {...state, getcountriesname: action.payload  }
+          
+        return {...state, countries: action.payload , allCountries: action.payload  }
         
         case POST_ACTIVITY:
             return {...state}
 
         case FILTER_BY_CONTINENT:
-        const allCountries = state.allCountries
+        const allCountries = state.allCountries;
         const filterContinente = action.payload === "All" ? allCountries : allCountries.filter(el => el.continente ===action.payload)
         return{
-            ...state, countries: filterContinente
+            ...state, countries: filterContinente 
             }
 
             case FILTER_BY_ACTIVITY:
-                let filter=[]
-                state.allCountries.map((country)=>(
-                country.activities.map((activity)=> {
-                    if(activity.nombre ===action.payload){
-                    return filter.push(country)
-                    }
-                })
-                ))
-                return{
+              const filteredCountries = state.allCountries.filter((country) =>
+                country.activities.some((activity) => activity.nombre === action.payload)
+              );
+              return {
                 ...state,
-                countries: filter
-                }
-                
-                case UPDATE_SEARCH_RESULTS:
-                  return {
-                    ...state,
-                    searchResults: action.payload,
-                  };
-
+                countries: filteredCountries,
+              };
+            
         case GET_ACTIVITIES:
             return {
                 ...state,
-                activities: action.payload , activity:action.payload
+                activities: action.payload , activity: action.payload
             }
             case FILTER_POPULATION:
                     const sortedPaises = [...state.countries];

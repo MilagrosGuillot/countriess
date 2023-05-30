@@ -64,7 +64,7 @@ return countries
 
 const getCountryName = async (name) => {
     if(name){
-    const dbcountry = await Country.findOne({
+    const dbcountry = await Country.findAll({
         where: { nombre: { [Op.iLike]: `%${name}%` } },
         include: {
         model: Activity,

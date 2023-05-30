@@ -1,16 +1,24 @@
-.container{
+.container {
     background-image: url(./assets/avioncito.jpg);
-    background-size: cover;
-    height: 100vh;
     display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.containerInfo{
-    display: flex;
-   flex-direction: column;
-   background-color: rgba(121, 216, 216, 0.5);
-   width: 20%;
-   padding: 5px;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: space-around;
+  }
   
-}
+  .containerInfo {
+        margin: 20px;
+        margin-top: 80px;
+        margin-bottom: 98px;
+        border: 2px solid #000;
+        width: 400px;
+        height: 600px;
+        box-sizing: border-box;
+        padding: 10px;
+        border-radius: 15px;
+        box-shadow: 8px 8px 8px 1px rgba(0, 0, 0, 0.2);
+        background-color:cadetblue;
+    }
+  
+  
+  

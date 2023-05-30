@@ -1,41 +1,31 @@
 import { useState } from "react";
 import styles from "./SearchBar.module.css";
-import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { updateSearchResults } from "../../redux/Actions"; // Importa la acción updateSearchResults
+import { getCountryName } from "../../redux/Actions";
+import { Link } from "react-router-dom";
 
-const SearchBar = ({ setPageNum }) => {
+const SearchBar = ({setCurrentPage}) => {
   const [name, setName] = useState("");
   const dispatch = useDispatch();
-  const [hasSpecialCharacters, setHasSpecialCharacters] = useState(false);
-
-  const countries = useSelector(state => state.countries)
-
-  const performSearch = (searchText) => {
-    const hasSpecialChars = /[^a-zA-Z\s]/.test(searchText);
-    setHasSpecialCharacters(hasSpecialChars);
-  
-    if (hasSpecialChars) {
-      return [];
-    }
-    const filteredCountries = countries.filter((country) =>
-      country.nombre.toLowerCase().startsWith(searchText.toLowerCase())
-    );
-    return filteredCountries;
-  };
-  
+const countries = useSelector(state => state.countries)
 
   const handleChange = (event) => {
-    setName(event.target.value);
-    // Realiza la lógica de búsqueda y actualiza los resultados de búsqueda en el estado global
-    const searchResults = performSearch(event.target.value); // 
-    dispatch(updateSearchResults(searchResults));
-    console.log(searchResults)
+    const searchText = event.target.value;
+    setName(searchText);
+    setCurrentPage(1)
+    dispatch(getCountryName(searchText));
+    
+    console.log("entro al handleChange");
   };
+
+
   
   const handleClick = () => {
     setName("");
   };
+
+  const hasSpecialCharsOrNumbers = /[^a-zA-Z\s]/.test(name) || /\d/.test(name);
+  const isButtonDisabled = !name || hasSpecialCharsOrNumbers || countries.length === 0 ; // Deshabilitar el botón si el campo está vacío o hay errores en el nombre
 
   return (
     <div className={styles.container}>
@@ -48,16 +38,30 @@ const SearchBar = ({ setPageNum }) => {
           onChange={handleChange}
         />
         <Link to={`/search/${name}`}>
-          <button onClick={handleClick}>Buscar</button>
+          <button onClick={handleClick} disabled={isButtonDisabled}>
+            Buscar
+          </button>
         </Link>
       </form>
-      {hasSpecialCharacters && (
-        <p className={styles.error}>No se permiten caracteres especiales en la búsqueda.</p>
+      {hasSpecialCharsOrNumbers && (
+        <p className={styles.error}>
+          El texto contiene caracteres especiales o números.
+        </p>
       )}
+       {countries.length === 0 && (
+        <p className={styles.error}>
+          Pais no encontrado.
+        </p>
+       )}
+    
     </div>
   );
-  
-      }
+};
+
 export default SearchBar;
+
+
+
+
 
 

@@ -10,9 +10,11 @@ const Filter = ({setCurrentPage}) => {
 
     function handleFilterContinents (event) {
         dispatch(filterbyContinent(event.target.value))
+        setCurrentPage(1)
         }
         function handleFilterPopulation (event) {
           dispatch(filterPopulation(event.target.value))
+          setCurrentPage(1)
           }
           function handleFilterAbc (event) {
             dispatch(filterAbc(event.target.value))
@@ -22,6 +24,7 @@ const Filter = ({setCurrentPage}) => {
         function handleFilterActivity(event) {
             console.log("Actividad seleccionada:", event.target.value);
             dispatch(filterActivity(event.target.value));
+            setCurrentPage(1)
         }
 
         useEffect(() => {

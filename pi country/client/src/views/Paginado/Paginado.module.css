@@ -30,4 +30,8 @@
   .paginado button:focus {
     outline: none;
   }
+  .activePage {
+    font-weight: bold;
+    color: red;
+  }
   
