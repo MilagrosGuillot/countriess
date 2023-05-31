@@ -9,7 +9,7 @@
   .containerInfo {
         margin: 20px;
         margin-top: 80px;
-        margin-bottom: 98px;
+        margin-bottom: 300px;
         border: 2px solid #000;
         width: 400px;
         height: 600px;
@@ -19,6 +19,5 @@
         box-shadow: 8px 8px 8px 1px rgba(0, 0, 0, 0.2);
         background-color:cadetblue;
     }
-  
   
   

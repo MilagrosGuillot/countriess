@@ -14,18 +14,14 @@ const countries = useSelector(state => state.countries)
     setName(searchText);
     setCurrentPage(1)
     dispatch(getCountryName(searchText));
-    
-    console.log("entro al handleChange");
   };
 
-
-  
   const handleClick = () => {
     setName("");
   };
 
   const hasSpecialCharsOrNumbers = /[^a-zA-Z\s]/.test(name) || /\d/.test(name);
-  const isButtonDisabled = !name || hasSpecialCharsOrNumbers || countries.length === 0 ; // Deshabilitar el botón si el campo está vacío o hay errores en el nombre
+  const isButtonDisabled = !name || hasSpecialCharsOrNumbers || countries.length === 0 ; // Deshabilita el botón si el campo está vacío o hay errores en el nombre o si no se encontro el pais
 
   return (
     <div className={styles.container}>
@@ -37,8 +33,8 @@ const countries = useSelector(state => state.countries)
           placeholder="Buscar países..."
           onChange={handleChange}
         />
-        <Link to={`/search/${name}`}>
-          <button onClick={handleClick} disabled={isButtonDisabled}>
+        <Link to={`/search/${name}`}>                   
+          <button onClick={handleClick} disabled={isButtonDisabled}> 
             Buscar
           </button>
         </Link>

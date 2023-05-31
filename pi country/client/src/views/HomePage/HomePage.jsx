@@ -14,7 +14,6 @@ const HomePage = () => {
   const [currentPage, setCurrentPage] = useState(1)
   const [countryPerPage, setCountryPerPage] = useState(12)
 
-
 const indexOfLastCountry= currentPage * countryPerPage //12
 const indexOfFirstCountry = indexOfLastCountry - countryPerPage //0
 
