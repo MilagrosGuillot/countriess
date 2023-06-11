@@ -12,7 +12,7 @@ return(
     id={pais.id}
     nombre={pais.nombre}
     bandera={pais.bandera}
-    continente={pais.continente}
+    continente={pais.subregion}
         ></Card>
     })
     : "NO"
