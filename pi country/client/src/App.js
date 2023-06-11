@@ -4,7 +4,7 @@ import { HomePage, LandingPage, Detail, Form } from './views';
 import NavBar from './components/NavBar/NavBar';
 import SearchBarName from './components/SearchBar/SearchBarName';
 import axios from 'axios';
-axios.defaults.baseURL = "https://countriess-production.up.railway.app"
+axios.defaults.baseURL = "https://countriess-production.up.railway.app" //http://localhost:3001
 
 function App() {
 

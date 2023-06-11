@@ -29,7 +29,7 @@ const getCountries = async () => {
                         id: country.id,
                         nombre: country.name,
                         bandera: country.flags,
-                        continente: country.continents,
+                        continente: country.subregion,
                         capital: country.capital,
                         subregion: country.subregion,
                         area: country.area,
