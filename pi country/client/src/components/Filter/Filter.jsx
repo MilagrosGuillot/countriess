@@ -35,13 +35,12 @@ return(
     <div className={styles.container}>
 <select onChange={(event) => handleFilterContinents(event)} className={styles.selectUno}>
   <option value="All">Continente</option>
-  <option value="North America">America del norte</option>
   <option value="Asia">Asia</option>
   <option value="Europe">Europa</option>
   <option value="Oceania">Oceania</option>
   <option value="Africa">Africa</option>
   <option value="Antarctica">Antartida</option>
-  <option value="South America">America del sur</option>
+  <option value="Americas">America</option>
 </select>
 
 <select onChange={(event)=> handleFilterActivity(event)} className={styles.selectDos}>
