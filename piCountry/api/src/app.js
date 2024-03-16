@@ -15,7 +15,11 @@ server.use(bodyParser.json({ limit: '50mb' }));
 server.use(cookieParser());
 server.use(morgan('dev'));
 server.use((req, res, next) => {
+<<<<<<<< HEAD:piCountry/api/src/app.js
   res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); // update to match the domain you will make the request from
+========
+  res.header('Access-Control-Allow-Origin', 'https://countriess-mu.vercel.app'); // update to match the domain you will make the request from
+>>>>>>>> fff06e43bde02e34d23a4ec40bb7df2727245830:api/src/app.js
   res.header('Access-Control-Allow-Credentials', 'true');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');

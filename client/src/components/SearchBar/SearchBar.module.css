@@ -1,0 +1,21 @@
+.container{
+    padding-top: 20px;
+}
+.input{
+    width: 200px;
+    height: 20px;
+    border-radius: 5px;
+    border: 1px solid #000;
+    
+}
+.button{
+    height: 26px;
+    border-radius: 5px;
+    border: 1px solid #000;
+}
+
+.button:hover{
+    background-color: crimson;
+    color:black;
+    
+}
