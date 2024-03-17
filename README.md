@@ -32,12 +32,12 @@ La idea de este proyecto es construir una aplicación web a partir de una API:
 
 
 ### Relaciones
-1. varios **country** pueden _tener_ varias  **Activity** (n a n).
+1. Varios **country** pueden _tener_ varias  **Activity** (n a n).
 
 ### Diagramas
 
 ### Modelo Entidad - Relacion
-![Modelo Entidad - Relacion](./ExpenseModeloEntidadRelacion.drawio.png)
+![Modelo Entidad - Relacion](./Countries.drawio.png)
 
 ### Modelo Relacional de la BD
 ![Modelo Relacional de la BD](./CountriessModeloRelacional.drawio.png)
