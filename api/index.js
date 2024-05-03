@@ -19,18 +19,18 @@
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
-<<<<<<<< HEAD:piCountry/api/index.js
+
 
 // Syncing all the models at once.
 conn.sync({ alter: true }).then(() => {
   server.listen(() => {
     console.log("%s listening in 3001"); // eslint-disable-line no-console
-========
+
 require("dotenv").config()
 // Syncing all the models at once.
 conn.sync({ alter: true }).then(() => {
   server.listen(process.env.PORT, () => {
     console.log(`%s listening at`, process.env.PORT); // eslint-disable-line no-console
->>>>>>>> fff06e43bde02e34d23a4ec40bb7df2727245830:api/index.js
+
   });
-});
+})})})

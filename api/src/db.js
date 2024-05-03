@@ -3,23 +3,12 @@ const { Sequelize } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
 const {
-<<<<<<<< HEAD:piCountry/api/src/db.js
   DB_USER, DB_PASSWORD, DB_HOST,} = process.env;
 
 const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/countries`, {
-========
-  DB_USER, DB_PASSWORD, DB_HOST,DB_PORT,DB_NAME } = process.env;
-
-const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`, {
->>>>>>>> fff06e43bde02e34d23a4ec40bb7df2727245830:api/src/db.js
   logging: false, // set to console.log to see the raw SQL queries
   native: false, // lets Sequelize know we can use pg-native for ~30% more speed
 });
-
-<<<<<<<< HEAD:piCountry/api/src/db.js
-========
-
->>>>>>>> fff06e43bde02e34d23a4ec40bb7df2727245830:api/src/db.js
 const basename = path.basename(__filename)
 
 const modelDefiners = [];
@@ -40,7 +29,7 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-const { Activity, Country } = sequelize.models;
+const { Activity, Country, User } = sequelize.models;
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
