@@ -9,8 +9,7 @@ const {Country, User} = require("../db")
 const { Op } = require('sequelize');
 
 
-
-routerAuthentication.post("/token", async (req, res) => {
+/*routerAuthentication.post("/token", async (req, res) => {
     const {id:sub, name} = {id: "mili", name:"gami"}
     const token = jwt.sign({
         sub,
@@ -19,13 +18,15 @@ routerAuthentication.post("/token", async (req, res) => {
     }, secret)
     res.send({token})
 })
+*/
 
 routerAuthentication.post("/login", async (req, res) => {
-    const { nombre } = req.body; // Extrae el nombre del cuerpo de la solicitud
+    const { name } = req.body; 
+    
     const findAllUsuario = await User.findAll({
-        where: { nombre: nombre }
+        where: { name: name }
     });
-    const token = generarToken(nombre);
+    const token = generarToken(name);
     res.send({ token });
 });
 

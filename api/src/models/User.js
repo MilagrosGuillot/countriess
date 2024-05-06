@@ -8,12 +8,19 @@ module.exports = (sequelize) => {
         primaryKey: true,
         allowNull: false,
     },
-    nombre: {
+    name: {
       type: DataTypes.STRING,
-      allowNull: false,
-    }
+      allowNull: true,
+    },
+    lastName: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    age: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    }    
   }, {
-    // Agregar las propiedades timestamps para que Sequelize maneje las columnas createdAt y updatedAt automáticamente
     timestamps: true,
     createdAt: 'created_at',
     updatedAt: 'updated_at'
