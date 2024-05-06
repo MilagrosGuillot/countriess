@@ -19,16 +19,37 @@ const { Op } = require('sequelize');
     res.send({token})
 })
 */
+routerAuthentication.post("/createUser", async (req, res) => {
+    const {id, name, lastName, age } = req.body; 
+    try {
+        const createUser = await User.create({id, name, lastName, age }); 
+        const token = generarToken(name);
+        res.send({ token });
+    } catch (error) {
+        console.error("Error al crear el usuario:", error);
+        res.status(500).send("Error interno del servidor");
+    }
+});
+
 
 routerAuthentication.post("/login", async (req, res) => {
-    const { name } = req.body; 
-    
-    const findAllUsuario = await User.findAll({
-        where: { name: name }
-    });
-    const token = generarToken(name);
-    res.send({ token });
+    try {
+        const { name } = req.body; 
+        const findAllUser = await User.findAll({
+            where: { name: name }
+        });
+        if (findAllUser.length === 0) {
+            return res.status(404).send({ message: "Usuario no encontrado" });
+        }
+        const token = generarToken(name);
+        res.send({ token });
+        
+    } catch (error) {
+        console.error("Error al procesar la solicitud:", error);
+        res.status(500).send({ message: "Error interno del servidor" });
+    }
 });
+
 
 
 module.exports = routerAuthentication

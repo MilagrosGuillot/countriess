@@ -3,11 +3,11 @@ const { DataTypes } = require('sequelize');
 module.exports = (sequelize) => {
   sequelize.define('user', {
     id: {
-        type: DataTypes.UUID,
-        defaultValue: DataTypes.UUIDV4,
-        primaryKey: true,
-        allowNull: false,
-    },
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
+      primaryKey: true,
+      allowNull: false,
+  },
     name: {
       type: DataTypes.STRING,
       allowNull: true,
@@ -20,9 +20,5 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER,
       allowNull: true,
     }    
-  }, {
-    timestamps: true,
-    createdAt: 'created_at',
-    updatedAt: 'updated_at'
-  });
+  }, );
 }
