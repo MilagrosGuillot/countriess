@@ -1,6 +1,8 @@
 
-📌 El objetivo de este proyecto es construir una Single Page Application utlizando las tecnologías: **React**, **Redux**, **Node**, **Express** y **Sequelize**.
+📌 El objetivo de este proyecto es construir una Single Page Application utlizando las tecnologías: **React**, **Redux**, **Node**, **Express** **Sequelize**, y **jwt**.
+
 La idea de este proyecto es construir una aplicación web a partir de una API:
+-  Login: autorizacion y autenticacion a traves de jwt
 -  Buscar países.
 -  Visualizar la información de los países.
 -  Filtrarlos.
@@ -8,11 +10,9 @@ La idea de este proyecto es construir una aplicación web a partir de una API:
 -  Crear actividades turísticas.
 --------------------------------------------------------------------------------------------------------------------------------------------------
 
-
 ### Listado de Entidades
 
 **📍 MODELO 1 | Country**
-
 -  ID (Código de tres letras). \*
 -  Nombre. \*
 -  Imagen de la bandera. \*
